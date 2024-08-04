@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    tools:context=".Signup_login.SignupName">
+
+    <TextView
+        android:id="@+id/nameText"
+        android:text="이름을 알려주세요!"
+        android:textSize="18dp"
+        android:fontFamily="@font/a1009_2"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/hintName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="특수문자 사용금지"
+        android:textSize="13dp"
+        android:fontFamily="@font/a1009_1"
+        android:layout_below="@id/nameText"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/hintName"
+        android:gravity="center"
+        android:hint="이름"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/firstNameEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/nameEditText"
+        android:gravity="center"
+        android:hint="성"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

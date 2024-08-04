@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Signup_login.Login">
+
+    <ImageView
+        android:id="@+id/plant_icon"
+        android:layout_marginTop="80dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/icon_plant"
+        android:layout_centerHorizontal="true"
+        />
+    <!-- Email EditText -->
+    <EditText
+        android:id="@+id/Email_Login"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:background="@drawable/radius_btn_stroke_00ff77"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/plant_icon"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Password EditText -->
+    <EditText
+        android:id="@+id/PassWd_Login"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:background="@drawable/radius_btn_stroke_00ff77"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:layout_below="@id/Email_Login"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Login Button -->
+    <android.widget.Button
+        android:id="@+id/login_btn"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius_btn_00ff77"
+        android:fontFamily="@font/a1009_3"
+        android:text="로그인"
+        android:layout_below="@id/PassWd_Login"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Sign Up TextView -->
+    <TextView
+        android:id="@+id/sing_up_btn_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/a1009_2"
+        android:text="Sign up"
+        android:layout_below="@id/login_btn"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

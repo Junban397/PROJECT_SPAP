@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    tools:context=".Signup_login.SignupEmail">
+
+    <TextView
+        android:id="@+id/text"
+        android:text="가입을 시작합니다"
+        android:textSize="18dp"
+        android:fontFamily="@font/a1009_2"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/hintEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="이메일 주소를 입력해주세요"
+        android:textSize="13dp"
+        android:fontFamily="@font/a1009_1"
+        android:layout_below="@id/text"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/hintEmail"
+        android:gravity="center"
+        android:hint="Email"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout >
