@@ -30,7 +30,7 @@ class Sign_up : AppCompatActivity() {
 
         // 초기 프래그먼트 설정
         if (savedInstanceState == null) {
-            showFragment(currentFragmentIndex)
+            showFragment(currentFragmentIndex, true)
         }
 
         nextBtn.setOnClickListener {
@@ -50,18 +50,16 @@ class Sign_up : AppCompatActivity() {
 
     private fun handleButtonClick() {
         if (currentFragmentIndex < fragmentList.size - 1) {
-            val newIndex = currentFragmentIndex + 1
-            replaceFragment(fragmentList[newIndex], true)
-            currentFragmentIndex = newIndex
+            currentFragmentIndex++
+            showFragment(currentFragmentIndex, true)
             updateButtonText()
         }
     }
 
     private fun backButtonClick() {
         if (currentFragmentIndex > 0) {
-            val newIndex = currentFragmentIndex - 1
-            replaceFragment(fragmentList[newIndex], false)
-            currentFragmentIndex = newIndex
+            currentFragmentIndex--
+            showFragment(currentFragmentIndex, false)
             updateButtonText()
         } else {
             finish()
@@ -76,9 +74,9 @@ class Sign_up : AppCompatActivity() {
         }
     }
 
-    private fun showFragment(index: Int) {
+    private fun showFragment(index: Int, forward: Boolean) {
         if (index in fragmentList.indices) {
-            replaceFragment(fragmentList[index], true)
+            replaceFragment(fragmentList[index], forward)
         }
     }
 
@@ -89,7 +87,6 @@ class Sign_up : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(enterAnim, exitAnim)
             .replace(binding.fragmentSignup.id, fragment)
-            .addToBackStack(null) // 백 스택에 추가
             .commit()
     }
 }
