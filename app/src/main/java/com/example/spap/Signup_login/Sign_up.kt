@@ -1,15 +1,16 @@
 package com.example.spap.Signup_login
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.spap.R
 import com.example.spap.databinding.SingUpActivityBinding
 
 class Sign_up : AppCompatActivity() {
-
     private lateinit var binding: SingUpActivityBinding
-    private lateinit var nextBtn:Button
+    private lateinit var nextBtn: Button
     private lateinit var fragmentList: List<Fragment>
     private var currentFragmentIndex = 0
 
@@ -18,41 +19,77 @@ class Sign_up : AppCompatActivity() {
         binding = SingUpActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        nextBtn=binding.nextBtn
+        nextBtn = binding.nextBtn
 
-        fragmentList= listOf(
+        fragmentList = listOf(
             SignupEmail(),
             SignupPassword(),
             SignupName(),
             SignupDateofbirth()
         )
+
         // 초기 프래그먼트 설정
-        showFragment(currentFragmentIndex)
+        if (savedInstanceState == null) {
+            showFragment(currentFragmentIndex)
+        }
 
         nextBtn.setOnClickListener {
-            handleButtonClick()
+            if (nextBtn.text == "완료") {
+                finish()
+            } else {
+                handleButtonClick()
+            }
         }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                backButtonClick()
+            }
+        })
     }
 
     private fun handleButtonClick() {
-        // 다음 프래그먼트로 전환
-        currentFragmentIndex++
-        if (currentFragmentIndex < fragmentList.size-1) {
-            showFragment(currentFragmentIndex)
+        if (currentFragmentIndex < fragmentList.size - 1) {
+            val newIndex = currentFragmentIndex + 1
+            replaceFragment(fragmentList[newIndex], true)
+            currentFragmentIndex = newIndex
+            updateButtonText()
+        }
+    }
+
+    private fun backButtonClick() {
+        if (currentFragmentIndex > 0) {
+            val newIndex = currentFragmentIndex - 1
+            replaceFragment(fragmentList[newIndex], false)
+            currentFragmentIndex = newIndex
+            updateButtonText()
         } else {
-            // 모든 프래그먼트를 다 본 후
-            showFragment(currentFragmentIndex)
-            nextBtn.text = "완료"
-            nextBtn.setOnClickListener {
-                finish() // 액티비티 종료
-            }
+            finish()
+        }
+    }
+
+    private fun updateButtonText() {
+        nextBtn.text = if (currentFragmentIndex == fragmentList.size - 1) {
+            "완료"
+        } else {
+            "계속하기"
         }
     }
 
     private fun showFragment(index: Int) {
-        val fragment = fragmentList[index]
+        if (index in fragmentList.indices) {
+            replaceFragment(fragmentList[index], true)
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment, forward: Boolean) {
+        val enterAnim = if (forward) R.anim.to_right else R.anim.to_left
+        val exitAnim = if (forward) R.anim.from_right else R.anim.from_left
+
         supportFragmentManager.beginTransaction()
-            .replace(binding.fragmentSignup.id, fragment) // 뷰 바인딩을 통해 ID를 가져옵니다.
+            .setCustomAnimations(enterAnim, exitAnim)
+            .replace(binding.fragmentSignup.id, fragment)
+            .addToBackStack(null) // 백 스택에 추가
             .commit()
     }
 }
