@@ -8,61 +8,87 @@
 
     <ImageView
         android:id="@+id/plant_icon"
-        android:layout_marginTop="80dp"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:background="@drawable/icon_plant"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="80dp"
+        android:background="@drawable/icon_plant" />
+
     <!-- Email EditText -->
     <EditText
         android:id="@+id/Email_Login"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        android:background="@drawable/radius_btn_stroke_00ff77"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
         android:layout_below="@id/plant_icon"
-        android:paddingLeft="10dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:layout_centerHorizontal="true" />
+        android:background="@drawable/radius_btn_stroke_80ff72"
+        android:ems="10"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp" />
 
     <!-- Password EditText -->
     <EditText
         android:id="@+id/PassWd_Login"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        android:background="@drawable/radius_btn_stroke_00ff77"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:paddingLeft="10dp"
         android:layout_below="@id/Email_Login"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true" />
+        android:background="@drawable/radius_btn_stroke_80ff72"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp" />
 
     <!-- Login Button -->
     <android.widget.Button
         android:id="@+id/login_btn"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/radius_btn_00ff77"
-        android:fontFamily="@font/a1009_3"
-        android:text="로그인"
         android:layout_below="@id/PassWd_Login"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true" />
+        android:background="@drawable/radius_btn_00bb90"
+        android:fontFamily="@font/a1009_3"
+        android:text="로그인" />
 
     <!-- Sign Up TextView -->
-    <TextView
-        android:id="@+id/sing_up_btn_Login"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/a1009_2"
-        android:text="Sign up"
         android:layout_below="@id/login_btn"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/sing_up_btn_searchPw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1.2"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="start"
+            android:text="비밀번호 찾기" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/sing_up_btn_Login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="start"
+            android:text="회원가입" />
+
+    </LinearLayout>
 
 </RelativeLayout>

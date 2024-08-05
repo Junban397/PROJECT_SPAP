@@ -19,8 +19,8 @@
         android:layout_below="@id/fragment_signup"
         android:layout_centerHorizontal="true"
         android:text="계속하기"
-        android:background="@drawable/radius10_btn_stroke_00ff77_"
-        android:fontFamily="@font/a1009_1"
+        android:background="@drawable/radius_btn_00bb90"
+        android:fontFamily="@font/a1009_2"
     />
 
 </RelativeLayout>
