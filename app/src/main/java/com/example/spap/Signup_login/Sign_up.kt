@@ -1,10 +1,12 @@
 package com.example.spap.Signup_login
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.spap.Entity.UserData
 import com.example.spap.R
 import com.example.spap.databinding.SingUpActivityBinding
 
@@ -13,6 +15,8 @@ class Sign_up : AppCompatActivity() {
     private lateinit var nextBtn: Button
     private lateinit var fragmentList: List<Fragment>
     private var currentFragmentIndex = 0
+
+    private var userData = UserData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +39,10 @@ class Sign_up : AppCompatActivity() {
 
         nextBtn.setOnClickListener {
             if (nextBtn.text == "완료") {
+                collectUserDataFrom()
                 finish()
             } else {
+                collectUserDataFrom()
                 handleButtonClick()
             }
         }
@@ -88,5 +94,31 @@ class Sign_up : AppCompatActivity() {
             .setCustomAnimations(enterAnim, exitAnim)
             .replace(binding.fragmentSignup.id, fragment)
             .commit()
+    }
+
+    ////////////////////////////////
+
+    private fun collectUserDataFrom() {
+        when (currentFragmentIndex) {
+            0 -> {
+                val _userData = fragmentList[currentFragmentIndex] as SignupEmail
+                userData.email = _userData.getEmail()
+            }
+
+            1 -> {
+                val _userData = fragmentList[currentFragmentIndex] as SignupPassword
+                userData.password = _userData.getPassword()
+            }
+
+            2 -> {
+                val _userData = fragmentList[currentFragmentIndex] as SignupName
+                userData.name = _userData.getName()
+            }
+            3->{
+                val _userData = fragmentList[currentFragmentIndex] as SignupDateofbirth
+                userData.dateOfBirth=_userData.getDateOfBirth()
+            }
+        }
+        Log.d("Sign_up", "Date of Birth: ${userData.email+userData.password+userData.name+userData.dateOfBirth}")
     }
 }
