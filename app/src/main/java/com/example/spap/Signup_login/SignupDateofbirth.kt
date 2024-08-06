@@ -25,6 +25,10 @@ class SignupDateofbirth : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    fun getDateOfBirth(): String {
+        return binding.dateOfBirthEditText.text.toString()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

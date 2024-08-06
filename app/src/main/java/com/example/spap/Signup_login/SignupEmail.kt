@@ -26,6 +26,11 @@ class SignupEmail : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    fun getEmail(): String {
+        return binding.emailEditText.text.toString()
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

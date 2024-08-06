@@ -25,6 +25,10 @@ class SignupName : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    fun getName(): String {
+        return binding.nameEditText.text.toString()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

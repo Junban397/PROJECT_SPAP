@@ -25,6 +25,10 @@ class SignupPassword : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    fun getPassword(): String {
+        return binding.pwEditText.text.toString()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
