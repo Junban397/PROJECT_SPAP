@@ -37,13 +37,4 @@
         android:hint="이름"
         android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:id="@+id/firstNameEditText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/nameEditText"
-        android:gravity="center"
-        android:hint="성"
-        android:layout_centerHorizontal="true"/>
-
 </RelativeLayout>

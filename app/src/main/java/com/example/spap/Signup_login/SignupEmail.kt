@@ -30,6 +30,16 @@ class SignupEmail : Fragment() {
         return binding.emailEditText.text.toString()
     }
 
+    fun validateEmail(): Boolean {
+        val email = getEmail()
+        return if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.emailEditText.error = "이메일을 입력해주세요!"
+            false
+        } else {
+            true
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

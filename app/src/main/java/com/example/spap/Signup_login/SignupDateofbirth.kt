@@ -29,6 +29,16 @@ class SignupDateofbirth : Fragment() {
         return binding.dateOfBirthEditText.text.toString()
     }
 
+    fun validateDateOfBirth(): Boolean {
+        val dob = getDateOfBirth()
+        return if (dob.isEmpty()) {
+            binding.dateOfBirthEditText.error = "생년월일을 입력해주세요!"
+            false
+        } else {
+            true
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -39,11 +39,15 @@ class Sign_up : AppCompatActivity() {
 
         nextBtn.setOnClickListener {
             if (nextBtn.text == "완료") {
-                collectUserDataFrom()
-                finish()
+                if (validateCurrentDataFrom()) {
+                    collectUserDataFrom()
+                    finish()
+                }
             } else {
-                collectUserDataFrom()
-                handleButtonClick()
+                if (validateCurrentDataFrom()) {
+                    collectUserDataFrom()
+                    handleButtonClick()
+                }
             }
         }
 
@@ -114,11 +118,41 @@ class Sign_up : AppCompatActivity() {
                 val _userData = fragmentList[currentFragmentIndex] as SignupName
                 userData.name = _userData.getName()
             }
-            3->{
+
+            3 -> {
                 val _userData = fragmentList[currentFragmentIndex] as SignupDateofbirth
-                userData.dateOfBirth=_userData.getDateOfBirth()
+                userData.dateOfBirth = _userData.getDateOfBirth()
             }
         }
-        Log.d("Sign_up", "Date of Birth: ${userData.email+userData.password+userData.name+userData.dateOfBirth}")
+        Log.d(
+            "Sign_up",
+            "Date of Birth: ${userData.email + userData.password + userData.name + userData.dateOfBirth}"
+        )
+    }
+
+    private fun validateCurrentDataFrom(): Boolean {
+        return when (currentFragmentIndex) {
+            0 -> {
+                val _validate = fragmentList[currentFragmentIndex] as SignupEmail
+                _validate.validateEmail()
+            }
+
+            1 -> {
+                val _validate = fragmentList[currentFragmentIndex] as SignupPassword
+                _validate.validatePassword()
+            }
+
+            2 -> {
+                val _validate = fragmentList[currentFragmentIndex] as SignupName
+                _validate.validateName()
+            }
+
+            3 -> {
+                val _validate = fragmentList[currentFragmentIndex] as SignupDateofbirth
+                _validate.validateDateOfBirth()
+            }
+
+            else -> true
+        }
     }
 }

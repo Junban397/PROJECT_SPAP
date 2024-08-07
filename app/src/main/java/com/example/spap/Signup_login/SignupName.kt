@@ -29,6 +29,31 @@ class SignupName : Fragment() {
         return binding.nameEditText.text.toString()
     }
 
+    fun validateName(): Boolean {
+        val name = getName()
+        val containsSpecialChar = name.any { !it.isLetterOrDigit() }
+        return when{
+            name.isEmpty() -> {
+                binding.nameEditText.error="이름을 입력해주세요!"
+                false
+            }
+            containsSpecialChar ->{
+                binding.nameEditText.error="특수문자는 입력 불가입니다!"
+                false
+            }
+            else -> true
+
+        }
+
+
+        return if (name.isEmpty()) {
+            binding.nameEditText.error = "이름을 입력해주세요!"
+            false
+        } else {
+            true
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

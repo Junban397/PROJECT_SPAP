@@ -29,6 +29,33 @@ class SignupPassword : Fragment() {
         return binding.pwEditText.text.toString()
     }
 
+    fun validatePassword(): Boolean {
+        val password = getPassword()
+        val rePassword = binding.confirmPwEditText.text.toString()
+
+        val containsLetter = password.any { it.isLetter() }
+        val containsDigit = password.any { it.isDigit() }
+
+        return when {
+            password.length < 8 -> {
+                binding.pwEditText.error = "패스워드는 8글자 이상이여야 합니다!"
+                false
+            }
+
+            !containsLetter || !containsDigit -> {
+                binding.pwEditText.error = "비밀번호에는 영어와 숫자가 포함되어야 합니다!"
+                false
+            }
+
+            password != rePassword -> {
+                binding.confirmPwEditText.error = "비밀번호를 재확인 해주세요"
+                false
+            }
+
+            else -> true
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
