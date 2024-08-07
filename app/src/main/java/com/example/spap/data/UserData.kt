@@ -1,4 +1,4 @@
-package com.example.spap.Entity
+package com.example.spap.data
 
 data class UserData(
     var email: String = "",

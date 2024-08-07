@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home.MainHome">
+
+    <RelativeLayout
+        android:id="@+id/todayWeather"
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <RelativeLayout
+            android:id="@+id/todayWeatherDetails"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true">
+
+            <TextView
+                android:id="@+id/todayDate"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:fontFamily="@font/a1009_1"
+                android:text="8월7일 06:15 PM"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/weatherImage"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_below="@id/todayDate"
+                android:layout_gravity="center" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/information"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:id="@+id/region"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:fontFamily="@font/a1009_1"
+                android:text="지역이름"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/temperatures"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/region"
+                android:fontFamily="@font/a1009_1"
+                android:gravity="center_vertical"
+                android:text="기온"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_below="@id/temperatures"
+                android:fontFamily="@font/a1009_1"
+                android:text="습도"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/todayJob"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="오늘 할 일"
+        android:fontFamily="@font/a1009_2"
+        android:textColor="@color/black"
+        android:layout_below="@id/todayWeather"
+        android:textSize="18dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/todayJob"
+        />
+
+</RelativeLayout>
