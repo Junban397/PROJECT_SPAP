@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.spap.Entity.UserData
+import com.example.spap.data.UserData
 import com.example.spap.R
 import com.example.spap.databinding.SingUpActivityBinding
 
