@@ -20,6 +20,7 @@
         <activity
             android:name=".Home.MainHome"
             android:exported="false" />
+
         <activity
             android:name=".Signup_login.Sign_up"
             android:exported="false" />
