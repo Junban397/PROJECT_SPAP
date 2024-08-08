@@ -3,6 +3,7 @@ package com.example.spap.Signup_login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.spap.Home.MainHome
 import com.example.spap.R
 import com.example.spap.databinding.LoginActivityBinding
 
@@ -19,6 +20,12 @@ class Login : AppCompatActivity() {
         Sign_Up_Btn.setOnClickListener{
             val intent= Intent(this,Sign_up::class.java)
             startActivity(intent)
+        }
+        val Login_Btn=binding.loginBtn
+        Login_Btn.setOnClickListener {
+            val intent=Intent(this,MainHome::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }
