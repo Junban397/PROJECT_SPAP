@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "538918506878",
+    "project_id": "spap-e5faa",
+    "storage_bucket": "spap-e5faa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538918506878:android:16ed3417ce0657b1d3a32f",
+        "android_client_info": {
+          "package_name": "com.example.spap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-QVk__UZI2MRt0BFeMfUuVvF3LSvRwcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

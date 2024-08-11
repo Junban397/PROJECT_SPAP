@@ -1,130 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Home.MainHome">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/todayWeather"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="12dp">
+    <data>
 
-        <RelativeLayout
-            android:id="@+id/todayWeatherDetails"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:layout_weight="1.4">
+        <variable
+            name="plantEventViewModel"
+            type="com.example.spap.Home.PlantEventViewModel" />
+    </data>
 
-            <TextClock
-                android:id="@+id/date"
-                android:textColor="@color/black"
-                android:fontFamily="@font/a1009_1"
-                android:layout_width="125dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:format12Hour="MM월 dd일 E요일" />
-
-            <TextClock
-                android:id="@+id/time"
-                android:layout_width="125dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/date"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/a1009_1"
-                android:format12Hour="hh:mm a"
-                android:textSize="22dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/weatherIcon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_vertical" />
-
-            <TextView
-                android:id="@+id/weatherType"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@id/weatherIcon"
-                android:fontFamily="@font/a1009_2"
-                android:gravity="center"
-                android:text="하늘 상태" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/information"
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1.4">
-
-            <TextView
-                android:id="@+id/region"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_marginRight="20dp"
-                android:drawableRight="@drawable/left_gps"
-                android:fontFamily="@font/a1009_1"
-                android:gravity="center_vertical|end"
-                android:text="지역이름"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/temperatures"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@id/region"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/a1009_1"
-                android:gravity="center_vertical|end"
-                android:drawableRight="@drawable/left_temp"
-                android:text="기온"
-                android:textColor="@color/black"
-                android:textSize="25dp" />
-
-            <TextView
-                android:id="@+id/humidity"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_below="@id/temperatures"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/a1009_1"
-                android:gravity="center_vertical|end"
-                android:text="습도"
-                android:drawableRight="@drawable/left_humi"
-                android:textColor="@color/black" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/todayJob"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/todayWeather"
-        android:fontFamily="@font/a1009_2"
-        android:gravity="center_vertical"
-        android:text="오늘 할 일"
-        android:textColor="@color/black"
-        android:textSize="18dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/todayJob" />
+        tools:context=".Home.MainHome">
 
-</RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/todayWeather"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="12dp">
+
+            <RelativeLayout
+                android:id="@+id/todayWeatherDetails"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_weight="1.4">
+
+                <TextClock
+                    android:id="@+id/date"
+                    android:layout_width="125dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/a1009_1"
+                    android:format12Hour="MM월 dd일 E요일"
+                    android:textColor="@color/black" />
+
+                <TextClock
+                    android:id="@+id/time"
+                    android:layout_width="125dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/date"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/a1009_1"
+                    android:format12Hour="hh:mm a"
+                    android:textSize="22dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/weatherIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/weatherType"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/weatherIcon"
+                    android:fontFamily="@font/a1009_2"
+                    android:gravity="center"
+                    android:text="하늘 상태" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/information"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.4">
+
+                <TextView
+                    android:id="@+id/region"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="20dp"
+                    android:drawableRight="@drawable/left_gps"
+                    android:fontFamily="@font/a1009_1"
+                    android:gravity="center_vertical|end"
+                    android:text="지역이름"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/temperatures"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/region"
+                    android:layout_marginRight="20dp"
+                    android:drawableRight="@drawable/left_temp"
+                    android:fontFamily="@font/a1009_1"
+                    android:gravity="center_vertical|end"
+                    android:text="기온"
+                    android:textColor="@color/black"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/humidity"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/temperatures"
+                    android:layout_marginRight="20dp"
+                    android:drawableRight="@drawable/left_humi"
+                    android:fontFamily="@font/a1009_1"
+                    android:gravity="center_vertical|end"
+                    android:text="습도"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/todayJob"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/todayWeather"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="오늘 할 일"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/todayJobList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/todayJob"
+            app:items="@{plantEventViewModel.combinedPlantEvents}"/>
+
+    </RelativeLayout>
+</layout>
