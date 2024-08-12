@@ -70,7 +70,7 @@ dependencies {
     implementation("com.loopj.android:android-async-http:1.4.11")
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth:21.0.1'")
+    implementation("com.google.firebase:firebase-auth:23.0.0'")
     implementation("com.google.firebase:firebase-database:20.0.3")
     implementation("com.google.firebase:firebase-firestore-ktx:24.0.2")
     implementation("com.github.bumptech.glide:glide:4.12.0")
