@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+<!--    <data>
 
         <variable
             name="plantEventViewModel"
             type="com.example.spap.Home.PlantEventViewModel" />
-    </data>
+    </data>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -136,8 +136,10 @@
             android:id="@+id/todayJobList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/todayJob"
-            app:items="@{plantEventViewModel.combinedPlantEvents}"/>
+            android:layout_below="@id/todayJob"/>
+            <!--app:items="@{plantEventViewModel.combinedPlantEvents}"-->/>
+
+
 
     </RelativeLayout>
 </layout>

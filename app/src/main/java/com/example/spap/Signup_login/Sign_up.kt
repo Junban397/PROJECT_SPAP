@@ -6,15 +6,23 @@ import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.spap.data.UserData
 import com.example.spap.R
 import com.example.spap.databinding.SingUpActivityBinding
-
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 class Sign_up : AppCompatActivity() {
+
     private lateinit var binding: SingUpActivityBinding
     private lateinit var nextBtn: Button
     private lateinit var fragmentList: List<Fragment>
     private var currentFragmentIndex = 0
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     private var userData = UserData()
 
@@ -22,6 +30,9 @@ class Sign_up : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = SingUpActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         nextBtn = binding.nextBtn
 
@@ -32,21 +43,26 @@ class Sign_up : AppCompatActivity() {
             SignupDateofbirth()
         )
 
-        // 초기 프래그먼트 설정
         if (savedInstanceState == null) {
             showFragment(currentFragmentIndex, true)
         }
 
         nextBtn.setOnClickListener {
-            if (nextBtn.text == "완료") {
-                if (validateCurrentDataFrom()) {
-                    collectUserDataFrom()
-                    finish()
-                }
-            } else {
-                if (validateCurrentDataFrom()) {
-                    collectUserDataFrom()
-                    handleButtonClick()
+            lifecycleScope.launch {
+                collectUserDataFrom()
+
+                val isValid = validateCurrentDataFrom()
+
+                Log.d("Sign_up", "Validation result for current fragment: $isValid")
+
+                if (isValid) {
+                    if (nextBtn.text == "완료") {
+                        registerUser()
+                    } else {
+                        handleButtonClick()
+                    }
+                } else {
+                    Log.d("Sign_up", "Validation failed for current fragment. No transition.")
                 }
             }
         }
@@ -56,6 +72,16 @@ class Sign_up : AppCompatActivity() {
                 backButtonClick()
             }
         })
+    }
+
+    private suspend fun validateCurrentDataFrom(): Boolean {
+        return when (currentFragmentIndex) {
+            0 -> (fragmentList[currentFragmentIndex] as? SignupEmail)?.validateEmail() ?: false
+            1 -> (fragmentList[currentFragmentIndex] as? SignupPassword)?.validatePassword() ?: false
+            2 -> (fragmentList[currentFragmentIndex] as? SignupName)?.validateName() ?: false
+            3 -> (fragmentList[currentFragmentIndex] as? SignupDateofbirth)?.validateDateOfBirth() ?: false
+            else -> true
+        }
     }
 
     private fun handleButtonClick() {
@@ -100,59 +126,46 @@ class Sign_up : AppCompatActivity() {
             .commit()
     }
 
-    ////////////////////////////////
-
     private fun collectUserDataFrom() {
         when (currentFragmentIndex) {
             0 -> {
-                val _userData = fragmentList[currentFragmentIndex] as SignupEmail
-                userData.email = _userData.getEmail()
+                val _userData = fragmentList[currentFragmentIndex] as? SignupEmail
+                userData.email = _userData?.getEmail() ?: ""
             }
-
             1 -> {
-                val _userData = fragmentList[currentFragmentIndex] as SignupPassword
-                userData.password = _userData.getPassword()
+                val _userData = fragmentList[currentFragmentIndex] as? SignupPassword
+                userData.password = _userData?.getPassword() ?: ""
             }
-
             2 -> {
-                val _userData = fragmentList[currentFragmentIndex] as SignupName
-                userData.name = _userData.getName()
+                val _userData = fragmentList[currentFragmentIndex] as? SignupName
+                userData.name = _userData?.getName() ?: ""
             }
-
             3 -> {
-                val _userData = fragmentList[currentFragmentIndex] as SignupDateofbirth
-                userData.dateOfBirth = _userData.getDateOfBirth()
+                val _userData = fragmentList[currentFragmentIndex] as? SignupDateofbirth
+                userData.dateOfBirth = _userData?.getDateOfBirth() ?: ""
             }
         }
-        Log.d(
-            "Sign_up",
-            "Date of Birth: ${userData.email + userData.password + userData.name + userData.dateOfBirth}"
-        )
     }
 
-    private fun validateCurrentDataFrom(): Boolean {
-        return when (currentFragmentIndex) {
-            0 -> {
-                val _validate = fragmentList[currentFragmentIndex] as SignupEmail
-                _validate.validateEmail()
-            }
+    private fun registerUser() {
+        if (userData.email.isNotEmpty() && userData.password.isNotEmpty()) {
+            // Firestore에 사용자 데이터 저장
+            val userMap = mapOf(
+                "email" to userData.email,
+                "password" to userData.password,
+                "name" to userData.name,
+                "dateOfBirth" to userData.dateOfBirth
+            )
 
-            1 -> {
-                val _validate = fragmentList[currentFragmentIndex] as SignupPassword
-                _validate.validatePassword()
-            }
-
-            2 -> {
-                val _validate = fragmentList[currentFragmentIndex] as SignupName
-                _validate.validateName()
-            }
-
-            3 -> {
-                val _validate = fragmentList[currentFragmentIndex] as SignupDateofbirth
-                _validate.validateDateOfBirth()
-            }
-
-            else -> true
+            firestore.collection("users").document(userData.email) // 이메일을 문서 ID로 사용
+                .set(userMap)
+                .addOnSuccessListener {
+                    Log.d("Sign_up", "사용자 정보 저장 성공")
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Sign_up", "사용자 정보 저장 실패", e)
+                }
         }
     }
 }
