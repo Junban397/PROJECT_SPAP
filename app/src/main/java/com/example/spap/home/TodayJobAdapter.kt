@@ -1,10 +1,9 @@
-package com.example.spap.Home
+package com.example.spap.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spap.data.CombinedPlantEvent
-import com.example.spap.data.PlantEvent
 import com.example.spap.databinding.TodayWorkItemBinding
 
 class TodayJobAdapter : RecyclerView.Adapter<TodayJobAdapter.Holder>() {

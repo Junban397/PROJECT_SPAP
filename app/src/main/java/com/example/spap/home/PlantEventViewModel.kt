@@ -1,4 +1,4 @@
-package com.example.spap.Home
+package com.example.spap.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,20 +13,16 @@ class PlantEventViewModel : ViewModel() {
     val combinedPlantEvents: LiveData<List<CombinedPlantEvent>> = _combinedPlantEvents
 
     private var currentUserId: String = ""
+    private var todayDate: LocalDate =LocalDate.now()
 
 
     fun loadPlantEvents(uId:String){
         currentUserId = uId
-        val plantEvents = getPlantEventsFromFirebase(uId)
+        val plantEvents = getPlantEventsFromFirebase(uId, todayDate)
         val plants = getPlantsFromFirebase(uId)
 
-        val today = LocalDate.now()  // 현재 날짜만 가져옴
 
-        val todayEvents = plantEvents.filter { event ->
-            event.date == today  // 날짜 비교
-        }
-
-        val combinedEvents = todayEvents.map { event ->
+/*        val combinedEvents = todayEvents.map { event ->
             val plant = plants[event.pId]
             CombinedPlantEvent(
                 plantEvent = event,
@@ -36,12 +32,10 @@ class PlantEventViewModel : ViewModel() {
             )
         }
 
-        _combinedPlantEvents.value = combinedEvents
+        _combinedPlantEvents.value = combinedEvents*/
     }
-    private fun getPlantEventsFromFirebase(userId: String): List<PlantEvent> {
-        // Firebase에서 사용자의 PlantEvent 목록을 가져오는 함수 (가상의 함수)
-        // 이 함수는 비동기적으로 Firebase에서 데이터를 가져와야 함
-        return listOf() // 여기에 Firebase 데이터를 가져오는 로직을 구현
+    private fun getPlantEventsFromFirebase(userId: String, todayDate:LocalDate): List<PlantEvent> {
+        return listOf()
     }
 
     private fun getPlantsFromFirebase(userId: String): Map<String, Plant> {

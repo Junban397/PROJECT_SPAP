@@ -1,4 +1,4 @@
-package com.example.spap.Home
+package com.example.spap.home
 
 import androidx.annotation.DrawableRes
 

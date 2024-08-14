@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.spap.Home.MainHome
-import com.example.spap.R
+import com.example.spap.home.MainHome
 import com.example.spap.databinding.LoginActivityBinding
 import com.google.firebase.firestore.FirebaseFirestore
 

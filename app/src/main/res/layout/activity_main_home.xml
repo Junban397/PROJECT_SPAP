@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>
+    <data>
 
         <variable
             name="plantEventViewModel"
-            type="com.example.spap.Home.PlantEventViewModel" />
-    </data>-->
+            type="com.example.spap.home.PlantEventViewModel" />
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Home.MainHome">
+        tools:context=".aaaaaaaaaa.MainHome">
 
 
         <LinearLayout

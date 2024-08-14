@@ -19,7 +19,7 @@
         android:theme="@style/Theme.SPAP"
         tools:targetApi="31">
         <activity
-            android:name=".Home.MainHome"
+            android:name=".home.MainHome"
             android:exported="false" />
 
         <activity
