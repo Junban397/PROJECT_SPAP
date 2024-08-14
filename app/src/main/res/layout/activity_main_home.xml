@@ -7,7 +7,7 @@
 
         <variable
             name="plantEventViewModel"
-            type="com.example.spap.home.PlantEventViewModel" />
+            type="com.example.spap.home.tasks.PlantEventViewModel" />
     </data>
 
     <RelativeLayout
@@ -138,6 +138,9 @@
             android:layout_height="match_parent"
             android:layout_below="@id/todayJob"/>
             <!--app:items="@{plantEventViewModel.combinedPlantEvents}"-->/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"></LinearLayout>
 
 
 
