@@ -1,10 +1,9 @@
-package com.example.spap.Home
+package com.example.spap.home
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -12,15 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.spap.BuildConfig
 import com.example.spap.databinding.ActivityMainHomeBinding
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.loopj.android.http.RequestParams
 import org.json.JSONObject
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalTime
-import java.util.Date
-import java.util.Locale
 
 class MainHome : AppCompatActivity() {
 
