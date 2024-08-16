@@ -1,4 +1,4 @@
-package com.example.spap.home
+package com.example.spap.home.tasks
 
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.JsonHttpResponseHandler

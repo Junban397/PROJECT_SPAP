@@ -33,10 +33,10 @@ class SignupEmail : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+/*    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // 추가적인 초기화가 필요하면 여기에 작성
-    }
+    }*/
 
     fun getEmail(): String {
         return binding.emailEditText.text.toString()

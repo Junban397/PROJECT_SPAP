@@ -9,30 +9,55 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.example.spap.BuildConfig
+import com.example.spap.R
 import com.example.spap.databinding.ActivityMainHomeBinding
+import com.example.spap.home.tasks.TasksMain
+import com.example.spap.home.tasks.WeatherApiClient
+import com.example.spap.home.tasks.WeatherData
+import com.example.spap.home.tasks.WeatherDataParser
 import com.google.android.gms.location.LocationServices
 import com.loopj.android.http.RequestParams
 import org.json.JSONObject
 
 class MainHome : AppCompatActivity() {
-
     private var _binding: ActivityMainHomeBinding? = null
     private val binding get() = _binding!!
-
-    companion object {
-        const val API_KEY: String = BuildConfig.openWeatherApi
-        const val WEATHER_URL: String = "https://api.openweathermap.org/data/2.5/weather"
-        private const val REQUEST_LOCATION = 1
-        private const val TAG = "WeatherDebug"
-    }
+    /*    private lateinit var navController: NavController*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        requestLocation()
+        // 기본 프래그먼트 설정
+        if (savedInstanceState == null) {
+            binding.bottomNavigation.selectedItemId = R.id.nav_main
+            replaceFragment(TasksMain())
+        }
+
+        // BottomNavigationView 클릭 리스너 설정
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_main -> {
+                    replaceFragment(TasksMain())
+                    true
+                }
+                // 다른 메뉴 항목에 대한 경우 추가
+                else -> false
+            }
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment, fragment)
+            .commit()
+
     }
 
     override fun onDestroy() {
@@ -40,67 +65,4 @@ class MainHome : AppCompatActivity() {
         _binding = null
     }
 
-
-    private fun requestLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this, arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ), REQUEST_LOCATION
-            )
-        } else {
-            getWeatherInCurrentLocation()
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getWeatherInCurrentLocation() {
-        val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationProviderClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                location?.let {
-                    val params = RequestParams().apply {
-                        put("lat", it.latitude)
-                        put("lon", it.longitude)
-                        put("appid", API_KEY)
-                        put("lang", "kr")
-                    }
-                    fetchWeatherData(params)
-                }
-            }
-            .addOnFailureListener {
-                Log.e(TAG, "Failed to obtain location", it)
-                Toast.makeText(this, "위치 정보를 제공받지못함", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun fetchWeatherData(params: RequestParams) {
-        val weatherApiClient = WeatherApiClient(API_KEY, WEATHER_URL)
-        weatherApiClient.fetchWeather(params, object : WeatherApiClient.WeatherApiCallback {
-            override fun onSuccess(response: JSONObject?) {
-                val weatherData = WeatherDataParser().parseWeatherData(response)
-                weatherData?.let {
-                    updateWeather(it)
-                }
-            }
-
-            override fun onFailure(error: Throwable?) {
-                Log.e(TAG, "Failed to fetch weather data", error)
-            }
-        })
-    }
-
-    private fun updateWeather(weather: WeatherData) {
-        binding.temperatures.text = weather.tempString+"°C"
-        binding.humidity.text = weather.humidity.toString()+"%"
-        binding.region.text = weather.cityName
-        binding.weatherType.text = weather.weatherType
-        binding.weatherIcon.setImageResource(weather.icon)
-    }
 }
