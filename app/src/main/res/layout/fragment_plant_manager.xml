@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/rounded_search"
         android:layout_width="370dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="18dp"
+        android:background="@drawable/rounded_search" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="38dp"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/search_bar"/>
+        android:layout_below="@id/search_bar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_bar"
+            android:layout_marginTop="38dp" />
+
+        <android.widget.Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/rounded_button"
+            android:textSize="38dp"
+            android:gravity="center" />
+    </FrameLayout>
 
 </RelativeLayout>
