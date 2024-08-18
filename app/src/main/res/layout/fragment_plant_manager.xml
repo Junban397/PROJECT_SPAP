@@ -23,12 +23,13 @@
             android:layout_marginTop="38dp" />
 
         <android.widget.Button
+            android:id="@+id/add_plant_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom|end"
             android:layout_marginRight="18dp"
             android:layout_marginBottom="18dp"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/add_button"
             android:textSize="38dp"
             android:gravity="center" />
     </FrameLayout>

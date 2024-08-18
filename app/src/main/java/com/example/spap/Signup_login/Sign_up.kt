@@ -3,6 +3,7 @@ package com.example.spap.Signup_login
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 class Sign_up : AppCompatActivity() {
 
     private lateinit var binding: SingUpActivityBinding
@@ -77,9 +79,13 @@ class Sign_up : AppCompatActivity() {
     private suspend fun validateCurrentDataFrom(): Boolean {
         return when (currentFragmentIndex) {
             0 -> (fragmentList[currentFragmentIndex] as? SignupEmail)?.validateEmail() ?: false
-            1 -> (fragmentList[currentFragmentIndex] as? SignupPassword)?.validatePassword() ?: false
+            1 -> (fragmentList[currentFragmentIndex] as? SignupPassword)?.validatePassword()
+                ?: false
+
             2 -> (fragmentList[currentFragmentIndex] as? SignupName)?.validateName() ?: false
-            3 -> (fragmentList[currentFragmentIndex] as? SignupDateofbirth)?.validateDateOfBirth() ?: false
+            3 -> (fragmentList[currentFragmentIndex] as? SignupDateofbirth)?.validateDateOfBirth()
+                ?: false
+
             else -> true
         }
     }
@@ -132,14 +138,17 @@ class Sign_up : AppCompatActivity() {
                 val _userData = fragmentList[currentFragmentIndex] as? SignupEmail
                 userData.email = _userData?.getEmail() ?: ""
             }
+
             1 -> {
                 val _userData = fragmentList[currentFragmentIndex] as? SignupPassword
                 userData.password = _userData?.getPassword() ?: ""
             }
+
             2 -> {
                 val _userData = fragmentList[currentFragmentIndex] as? SignupName
                 userData.name = _userData?.getName() ?: ""
             }
+
             3 -> {
                 val _userData = fragmentList[currentFragmentIndex] as? SignupDateofbirth
                 userData.dateOfBirth = _userData?.getDateOfBirth() ?: ""
@@ -148,24 +157,35 @@ class Sign_up : AppCompatActivity() {
     }
 
     private fun registerUser() {
-        if (userData.email.isNotEmpty() && userData.password.isNotEmpty()) {
-            // Firestore에 사용자 데이터 저장
-            val userMap = mapOf(
-                "email" to userData.email,
-                "password" to userData.password,
-                "name" to userData.name,
-                "dateOfBirth" to userData.dateOfBirth
-            )
+        auth.createUserWithEmailAndPassword(userData.email, userData.password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    user?.let {
+                        saveUserToStore()
+                    }
+                } else {
+                    Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
 
-            firestore.collection("users").document(userData.email) // 이메일을 문서 ID로 사용
-                .set(userMap)
-                .addOnSuccessListener {
-                    Log.d("Sign_up", "사용자 정보 저장 성공")
-                    finish()
                 }
-                .addOnFailureListener { e ->
-                    Log.e("Sign_up", "사용자 정보 저장 실패", e)
-                }
-        }
+            }
+    }
+
+    private fun saveUserToStore() {
+        val userMap = mapOf(
+            "email" to userData.email,
+            "name" to userData.name,
+            "dateOfBirth" to userData.dateOfBirth
+        )
+
+        firestore.collection("users").document(userData.email) // 이메일을 문서 ID로 사용
+            .set(userMap)
+            .addOnSuccessListener {
+                Log.d("Sign_up", "사용자 정보 저장 성공")
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Log.e("Sign_up", "사용자 정보 저장 실패", e)
+            }
     }
 }
