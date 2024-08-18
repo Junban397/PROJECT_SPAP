@@ -1,0 +1,192 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.plantmanager.AddPlant">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.widget.Button
+            android:id="@+id/add_plant_img"
+            android:layout_width="192dp"
+            android:layout_height="192dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_btn"
+            android:fontFamily="@font/a1009_1"
+            android:text="+"
+            android:textSize="79dp" />
+
+        <!-- Repeated blocks for TextView and EditText -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="식물 이름"
+            android:textColor="@color/black" />
+
+        <EditText
+            style="@style/CommonEditTextStyle"
+            android:layout_width="312dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="식물 애칭"
+            android:textColor="@color/black" />
+
+        <EditText
+            style="@style/CommonEditTextStyle"
+            android:layout_width="312dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="분양 날짜"
+            android:textColor="@color/black" />
+
+        <EditText
+            style="@style/CommonEditTextStyle"
+            android:layout_width="312dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="마지막으로 물 준 날짜"
+            android:textColor="@color/black" />
+
+        <EditText
+            style="@style/CommonEditTextStyle"
+            android:layout_width="312dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="마지막으로 분갈이 한 날짜"
+            android:textColor="@color/black" />
+
+        <EditText
+            style="@style/CommonEditTextStyle"
+            android:layout_width="312dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="식물 정보"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                style="@style/CommonEditTextStyle"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/thermometer_icon"
+                android:hint="적정 온도" />
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="0dp" />
+
+            <EditText
+                style="@style/CommonEditTextStyle"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/meteorology_icon"
+                android:hint="적정 습도" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                style="@style/CommonEditTextStyle"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/soil_icon"
+                android:hint="분갈이 주기" />
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="0dp" />
+
+            <EditText
+                style="@style/CommonEditTextStyle"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/watering_icon"
+                android:hint="물 주기" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center_vertical"
+            android:text="마지막으로 분갈이 한 날짜"
+            android:textColor="@color/black" />
+
+        <EditText
+            style="@style/CommonEditTextStyle"
+            android:layout_width="312dp"
+            android:layout_height="189dp" />
+
+        <android.widget.Button
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radius_btn_00bb90"
+            android:text="완료" />
+
+
+    </LinearLayout>
+</ScrollView>

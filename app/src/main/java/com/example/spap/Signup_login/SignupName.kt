@@ -31,13 +31,15 @@ class SignupName : Fragment() {
 
     fun validateName(): Boolean {
         val name = getName()
-        val containsSpecialChar = name.any { !it.isLetterOrDigit() }
+        val containsInvalidChar = name.any {
+            !it.isLetterOrDigit() && !it.isWhitespace()
+        }
         return when{
             name.isEmpty() -> {
                 binding.nameEditText.error="이름을 입력해주세요!"
                 false
             }
-            containsSpecialChar ->{
+            containsInvalidChar ->{
                 binding.nameEditText.error="특수문자는 입력 불가입니다!"
                 false
             }
