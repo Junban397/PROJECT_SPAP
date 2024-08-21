@@ -178,7 +178,7 @@ class Sign_up : AppCompatActivity() {
             "dateOfBirth" to userData.dateOfBirth
         )
 
-        firestore.collection("users").document(userData.email) // 이메일을 문서 ID로 사용
+        firestore.collection("users").document(userData.email)
             .set(userMap)
             .addOnSuccessListener {
                 Log.d("Sign_up", "사용자 정보 저장 성공")

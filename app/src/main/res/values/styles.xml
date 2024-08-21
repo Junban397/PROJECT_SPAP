@@ -4,6 +4,23 @@
         <item name="android:padding">6dp</item>
         <item name="android:background">@drawable/rounded_btn</item>
         <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#00bb90</item>
+        <item name="colorPrimaryVariant">#00bb90</item>
+        <item name="colorOnPrimary">#00bb90</item>
+    </style>
+
+    <style name="ThemeOverlay.NumberPicker" parent="Theme.AppTheme">
+        <!-- NumberPicker divider color -->
+        <item name="colorControlNormal">#00bb90</item>
+        <item name="android:fontFamily">@font/a1009_2</item>
+        <item name="android:textSize">18dp</item>
+        <!--<item name="android:textColorPrimary">#58CCFF</item>-->
     </style>
 </resources>
