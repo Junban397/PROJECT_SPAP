@@ -11,16 +11,31 @@
         android:orientation="vertical">
 
 
-        <android.widget.Button
-            android:id="@+id/add_plant_img"
-            android:layout_width="192dp"
-            android:layout_height="192dp"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_btn"
-            android:fontFamily="@font/a1009_1"
-            android:text="+"
-            android:textSize="79dp" />
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:id="@+id/add_plant_img"
+                android:layout_width="192dp"
+                android:layout_height="192dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_btn"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/a1009_1"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="79dp" />
+
+        </FrameLayout>
 
         <!-- Repeated blocks for TextView and EditText -->
 
@@ -35,6 +50,8 @@
             android:textColor="@color/black" />
 
         <EditText
+            android:gravity="center_vertical"
+            android:id="@+id/plantName"
             style="@style/CommonEditTextStyle"
             android:layout_width="312dp"
             android:layout_height="40dp" />
@@ -50,6 +67,7 @@
             android:textColor="@color/black" />
 
         <EditText
+            android:id="@+id/plantType"
             style="@style/CommonEditTextStyle"
             android:layout_width="312dp"
             android:layout_height="40dp" />
@@ -64,7 +82,8 @@
             android:text="분양 날짜"
             android:textColor="@color/black" />
 
-        <EditText
+        <TextView
+            android:id="@+id/plantingDate"
             style="@style/CommonEditTextStyle"
             android:layout_width="312dp"
             android:layout_height="40dp" />
@@ -79,7 +98,9 @@
             android:text="마지막으로 물 준 날짜"
             android:textColor="@color/black" />
 
-        <EditText
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/lastWateredDate"
             style="@style/CommonEditTextStyle"
             android:layout_width="312dp"
             android:layout_height="40dp" />
@@ -94,7 +115,8 @@
             android:text="마지막으로 분갈이 한 날짜"
             android:textColor="@color/black" />
 
-        <EditText
+        <TextView
+            android:id="@+id/lastRepottedDate"
             style="@style/CommonEditTextStyle"
             android:layout_width="312dp"
             android:layout_height="40dp" />
@@ -116,22 +138,28 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
+                android:id="@+id/plantTemp"
                 style="@style/CommonEditTextStyle"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:drawableLeft="@drawable/thermometer_icon"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/a1009_1"
                 android:hint="적정 온도" />
 
             <View
                 android:layout_width="30dp"
                 android:layout_height="0dp" />
 
-            <EditText
+            <TextView
+                android:id="@+id/plantHumidity"
                 style="@style/CommonEditTextStyle"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:drawableLeft="@drawable/meteorology_icon"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/a1009_1"
                 android:hint="적정 습도" />
 
         </LinearLayout>
@@ -143,22 +171,28 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
+                android:id="@+id/plantSoil"
                 style="@style/CommonEditTextStyle"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:drawableLeft="@drawable/soil_icon"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/a1009_1"
                 android:hint="분갈이 주기" />
 
             <View
                 android:layout_width="30dp"
                 android:layout_height="0dp" />
 
-            <EditText
+            <TextView
+                android:id="@+id/plantWater"
                 style="@style/CommonEditTextStyle"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:drawableLeft="@drawable/watering_icon"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/a1009_1"
                 android:hint="물 주기" />
 
         </LinearLayout>
@@ -170,15 +204,18 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/a1009_2"
             android:gravity="center_vertical"
-            android:text="마지막으로 분갈이 한 날짜"
+            android:text="메모"
             android:textColor="@color/black" />
 
         <EditText
+            android:id="@+id/plantMemo"
             style="@style/CommonEditTextStyle"
+            android:gravity="left"
             android:layout_width="312dp"
             android:layout_height="189dp" />
 
         <android.widget.Button
+            android:id="@+id/addPlantBtn"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
