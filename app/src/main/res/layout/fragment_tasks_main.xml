@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.tasks.TasksMain">
-    <data>
 
+    <data>
         <variable
             name="plantEventViewModel"
             type="com.example.spap.home.tasks.PlantEventViewModel" />
@@ -132,14 +133,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/todayJobList"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:items="@{plantEventViewModel.schedules}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/todayJob"/>
-        <!--app:items="@{plantEventViewModel.combinedPlantEvents}"-->/>
+            android:layout_below="@id/todayJob" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"></LinearLayout>
-
 
 
     </RelativeLayout>

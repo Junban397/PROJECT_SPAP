@@ -1,31 +1,33 @@
 package com.example.spap.home.tasks
 
+import TodayJobAdapter
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spap.BuildConfig
 import com.example.spap.R
-import com.example.spap.databinding.FragmentSignupNameBinding
 import com.example.spap.databinding.FragmentTasksMainBinding
-import com.example.spap.home.MainHome
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import com.loopj.android.http.RequestParams
 import org.json.JSONObject
-
 
 class TasksMain : Fragment() {
     private var _binding: FragmentTasksMainBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var viewModel: PlantEventViewModel
 
     companion object {
         const val API_KEY: String = BuildConfig.openWeatherApi
@@ -39,14 +41,32 @@ class TasksMain : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTasksMainBinding.inflate(inflater, container, false)
-        requestLocation()
+        viewModel = ViewModelProvider(this).get(PlantEventViewModel::class.java)
+        requestLocation()  // 위치 권한 요청
+        setupRecyclerView()  // RecyclerView 설정
+        observeViewModel()  // ViewModel 관찰
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        binding.todayJobList.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = TodayJobAdapter()
+        binding.todayJobList.adapter = adapter
+    }
+
+    private fun observeViewModel() {
+        val email = FirebaseAuth.getInstance().currentUser?.email ?: return
+        viewModel.schedulesForToday(email)
+        viewModel.schedules.observe(viewLifecycleOwner, Observer { schedules ->
+            (binding.todayJobList.adapter as TodayJobAdapter).submitList(schedules)
+        })
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun requestLocation() {
         val activity = requireActivity()
         if (ActivityCompat.checkSelfPermission(
@@ -83,7 +103,6 @@ class TasksMain : Fragment() {
                 }
             }
             .addOnFailureListener {
-                Log.e(TAG, "Failed to obtain location", it)
                 Toast.makeText(activity, "위치 정보를 제공받지못함", Toast.LENGTH_SHORT).show()
             }
     }
@@ -99,14 +118,13 @@ class TasksMain : Fragment() {
             }
 
             override fun onFailure(error: Throwable?) {
-                Log.e(TAG, "Failed to fetch weather data", error)
             }
         })
     }
 
     private fun updateWeather(weather: WeatherData) {
-        binding.temperatures.text = weather.tempString+"°C"
-        binding.humidity.text = weather.humidity.toString()+"%"
+        binding.temperatures.text = weather.tempString + "°C"
+        binding.humidity.text = weather.humidity.toString() + "%"
         binding.region.text = weather.cityName
         binding.weatherType.text = weather.weatherType
         binding.weatherIcon.setImageResource(weather.icon)

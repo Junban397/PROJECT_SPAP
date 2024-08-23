@@ -1,9 +1,11 @@
 package com.example.spap.home.tasks
 
+import TodayJobAdapter
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.spap.R
 import com.example.spap.data.CombinedPlantEvent
 
 object PlantBindingAdapter {
@@ -26,8 +28,9 @@ object PlantBindingAdapter {
     fun ImageView.setImageUrl(imageUrl: String?) {
         Glide.with(this.context)
             .load(imageUrl)
-            .override(200, 200)
-            .circleCrop()
+            .placeholder(R.drawable.plant_icon) // 기본 이미지 리소스
+            .override(300, 300) // 원하는 크기로 조정
+            .circleCrop() // 원형으로 자르기
             .into(this)
     }
 }
