@@ -1,5 +1,6 @@
 package com.example.spap.data
 
+import java.io.Serializable
 import java.time.LocalDate
 import java.util.Date
 
@@ -11,7 +12,7 @@ data class UserData(
     var dateOfBirth: String? = ""
 )
 
-data class AddPlant(
+data class Plant(
     val email: String = "",
     val plantName: String = "",
     val plantType: String = "",
@@ -22,7 +23,7 @@ data class AddPlant(
     val plantTemp: String = "",
     val plantMemo: String = "",
     val imageUrl: String? = null  // 이미지 URL이 선택적일 수 있음
-)
+): Serializable
 
 data class PlantEvent(
     val planId: String = "",
