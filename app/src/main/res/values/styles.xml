@@ -23,4 +23,9 @@
         <item name="android:textSize">18dp</item>
         <!--<item name="android:textColorPrimary">#58CCFF</item>-->
     </style>
+
+    <style name="ShapeImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>

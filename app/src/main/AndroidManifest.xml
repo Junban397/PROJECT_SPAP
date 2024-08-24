@@ -20,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".home.plantmanager.PlantInfoManager"
+            android:exported="false" />
+        <activity
             android:name=".home.plantmanager.AddPlant"
             android:exported="false" />
         <activity

@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.spap.home.plantmanager.PlantManagerViewModel" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="370dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/rounded_search" />
+    </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/search_bar">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="370dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/rounded_search" />
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/search_bar"
-            android:layout_marginTop="38dp" />
+            android:layout_below="@id/search_bar">
 
-        <android.widget.Button
-            android:id="@+id/add_plant_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="18dp"
-            android:layout_marginBottom="18dp"
-            android:background="@drawable/add_button"
-            android:textSize="38dp"
-            android:gravity="center" />
-    </FrameLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                app:plantManagerItems="@{viewModel.plantInfo}"
+                android:id="@+id/my_plant_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/search_bar"
+                android:layout_marginTop="38dp" />
 
-</RelativeLayout>
+            <android.widget.Button
+                android:id="@+id/add_plant_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginRight="18dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/add_button"
+                android:gravity="center"
+                android:textSize="38dp" />
+        </FrameLayout>
+
+    </RelativeLayout>
+</layout>
